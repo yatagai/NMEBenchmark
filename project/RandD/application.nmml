@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<!-- NMML reference: https://gist.github.com/1763850 -->
+	
+	<!-- metadata, make sure 'package' is at least 3 segments (ie. com.mycompany.myproject) -->
+	<meta title="RnD" package="com.nmeapp.app" version="1.0.0" company="yatagai" />
+	
+	<!-- output -->
+	<app main="com.nmeapp.app.Main" file="RandD" path="bin" />
+	
+	<!--mobile=>30fps other=>60fps-->
+	<window background="#000000" fps="60" umless="mobile" />
+	<window background="#000000" fps="30" if="mobile" />
+	
+	<window width="1280" height="720" unless="mobile" />
+	<window orientation="landscape" vsync="true" antialiasing="0" if="cpp" />
+	<window orientation="landscape" if="mobile" />
+	
+	<!-- classpath, haxe libs -->
+	<source path="src" />
+	<haxelib name="nme" />
+	
+	<!-- assets -->
+	<icon path="assets/nme.svg" />
+	<assets path="assets/font" rename="font" type="font" include="*.ttf"/>
+	<assets path="assets/graphics" rename="graphics" type="image" include="*.png"/>
+	<assets path="assets/sound/bgm" rename="bgm" include="*.mp3" type="music" />
+	<assets path="assets/sound/se" rename="se" include="*.wav" type="sound" unless="flash" />
+	<assets path="assets/sound/se" rename="se" include="*.mp3" type="sound" if="flash" />
+	
+	<!-- DLLs -->
+	<ndll name="std" />
+	<ndll name="regexp" />
+	<ndll name="zlib" />
+	<ndll name="nme" haxelib="nme" />
+
+	<!-- optimize JS output -->
+	<haxeflag name="--dead-code-elimination" if="html5" />
+	<haxeflag name="--js-modern" if="html5" />
+	
+</project>
